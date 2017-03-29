@@ -1,9 +1,3 @@
-body{
-	font-family: Helvetica, Arial;
-	font-size: 12px;
-
-}
-
 #backgroundImg{
 	position: relative;
 	border: 10px solid black;
@@ -17,27 +11,18 @@ body{
 
 #player{
 	position: absolute;
-	height:110px;
-	width:100%;
-	margin-top:145px;
-}
-
-#guile{
-	position: absolute;
-	width:200px;
-	height:250px;
+	height:240px;
+	width:190px;
 	left: 50px;
 	top: 60px;
 }
 
-#guile p{
+#guile {
 	position: absolute;
-	margin-left: 30px;
-	margin-bottom:0
-}
-
-#guile .name{
-	margin-top:40px;
+	width: 200px;
+	height:200px;
+	left: 50px;
+	top: 60px;
 }
 
 #opponent{
@@ -59,16 +44,6 @@ body{
 	left: 335px;
 	top:20px;
 	transition: transform .5s;
-}
-
-#status{
-	position: absolute;
-	text-align: center;
-	padding: 10px;
-	top:30%;
-	left: 35%;
-	color:white;
-	background-color: black;
 }
 
 #attackBtn{
@@ -93,4 +68,15 @@ body{
 	width:20%;
 	text-align: center;
 	top:350px;
+}
+
+
+#status{
+	position: absolute;
+	text-align: center;
+	padding: 10px;
+	top:30%;
+	left: 35%;
+	color:white;
+	background-color: black;
 }

@@ -1,3 +1,4 @@
+//Array of available objects
 var character = [
     {name: 'Guile', img: '../images/Guile.jpg', hp: 500},
     {name: 'Ryu', img: '../images/Ryu.jpg', hp: 500},
@@ -57,11 +58,11 @@ function Fighter(name, img, hp) {
   this.isKO = function(){
     return this.hp <= 0;
   };
-  // Helper to that returns true p fraction of the time
+  // successRate
   var isSuccessful = function(p){
     return Math.random() < p;
   };
-  // Returns a random int between min and max inclusive
+  // Returns a random int between min and max inclusive with addition of base number wanted
   var generateRandom = function(min, max){
     return Math.floor(Math.random()* (max - min)+50);
   };
@@ -115,42 +116,40 @@ $(document).ready(function(){
     $status = $('#status'),
     $restBtn = $('#restBtn');
 
-    var timerId;
-
   // Start Game
   game.start(opponent[Math.floor(Math.random()*opponent.length)], Guile);
   // Set name and attributes for opponent
   $opponentImg.attr('src', game.opponent.img);
   $opponentName.text(game.opponent.name + '!');
-  $opponenthp.text('hp: ' + game.opponent.hp);
-  // Set the status to text a new challenger appears
+  $opponenthp.text('HP: ' + game.opponent.hp);
+  // Display status to a new challenger appears
   $status.text('A new challenger' + game.opponent.name + ' approaches!');
-  // When Attack is clicked
+  // On atk click
   $attackBtn.click(function(event){
-    // Hide the butttons
+    // Hide options after selecting one to prevent multi clicking
     $attackBtn.hide();
     $restBtn.hide();
-    // Store the hp before attack
+    // Store current hp before attack
     var hpBeforeAttack = game.opponent.hp;
-    // Run the attack action
+    // Run attack
     game.attack();
     // Update hp info
-    $opponenthp.text('hp: ' + game.opponent.hp);
+    $opponenthp.text('HP: ' + game.opponent.hp);
     // Update status text
     var hpAfterAttack = game.opponent.hp;
-    $status.text(game.player.name + ' attacks and deliver ' +
+    $status.text(game.player.name + ' attacks and deals ' +
       (hpBeforeAttack - hpAfterAttack) +
-      ' points of damage');
+      ' damage');
     // Check for win
     if(game.win()){
       $status.text(game.player.name + " has defeated " + game.opponent.name + "!");
       return;
     }
-    // Timout for 3 seconds while showing opponent turn
+    // Timout during opponent turn
     window.setTimeout(function(){
-        $status.text(game.opponent.name + '\'s turn ...');
-        window.setTimeout(opponentTurn, 1000);
-    }, 1000);
+        $status.text(game.opponent.name + '\'s turn');
+        window.setTimeout(opponentTurn, 500);
+    }, 500);
 
   });
 
@@ -161,17 +160,17 @@ $(document).ready(function(){
       game.attack();
       var hpAfterAttack = game.player.hp;
       // Update player hp and info
-      $playerhp.text('hp: ' + game.player.hp);
-      $status.text(game.opponent.name + ' attacks and delivers ' +
-      (hpBeforeAttack - hpAfterAttack) + ' points of damage.');
+      $playerhp.text('HP: ' + game.player.hp);
+      $status.text(game.opponent.name + ' attacks and deals ' +
+      (hpBeforeAttack - hpAfterAttack) + ' damage.');
     } else {
       var hpBeforeRest = game.opponent.hp;
       game.rest();
       var hpAfterRest = game.opponent.hp;
-      // Update player hp and info
+      // Update player hp
       $opponenthp.text('hp: ' + game.opponent.hp);
-      $status.text(game.opponent.name + ' rests by ' +
-      (hpAfterRest - hpBeforeRest) + ' points.');
+      $status.text(game.opponent.name + ' recovers ' +
+      (hpAfterRest - hpBeforeRest) + ' HP!');
     }
 
     // Check for loss
@@ -196,13 +195,13 @@ $(document).ready(function(){
     game.rest();
     // Save hp after resting and print difference to status
     var hpAfterRest = game.player.hp;
-    $status.text(game.player.name + ' rests by ' +
-    (hpAfterRest - hpBeforeRest) + ' points.');
-    $playerhp.text('hp: ' + game.player.hp);
+    $status.text(game.player.name + ' recovers ' +
+    (hpAfterRest - hpBeforeRest) + ' HP!');
+    $playerhp.text('HP: ' + game.player.hp);
 
     // Timout for 2 seconds while showing opponent turn
     window.setTimeout(function(){
-        $status.text(game.opponent.name + '\'s turn ...');
+        $status.text(game.opponent.name + '\'s turn');
         window.setTimeout(opponentTurn, 1000);
     }, 1000);
   });

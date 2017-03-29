@@ -1,6 +1,5 @@
 //Array of available objects
-var character = [
-    {name: 'Guile', img: '../images/Guile.jpg', hp: 500},
+var opponent = [
     {name: 'Ryu', img: '../images/Ryu.jpg', hp: 500},
     {name: 'Ken', img: '../images/Ken.jpg', hp: 500},
     {name: 'Chun-Li', img: '../images/ChunLi.jpg', hp: 500},
@@ -34,7 +33,7 @@ function Fighter(name, img, hp) {
 //isSuccessful method calculates a % chance that Attacks will hit or miss
 
   this.attack = function(opponent) {
-    if(isSuccessful(0.6)){
+    if(isSuccessful(0.8)){
       opponent.receiveDamage(generateRandom(30, 50));
       return true;
     } else {
@@ -43,7 +42,7 @@ function Fighter(name, img, hp) {
   };
 
   this.receiveDamage = function(damage){
-    if(isSuccessful(0.4)){
+    if(isSuccessful(0.6)){
       this.hp -= damage;
       return true;
     } else {
@@ -123,7 +122,7 @@ $(document).ready(function(){
   $opponentName.text(game.opponent.name + '!');
   $opponenthp.text('HP: ' + game.opponent.hp);
   // Display status to a new challenger appears
-  $status.text('A new challenger' + game.opponent.name + ' approaches!');
+  $status.text('A new challenger ' + game.opponent.name + ' approaches!');
   // On atk click
   $attackBtn.click(function(event){
     // Hide options after selecting one to prevent multi clicking
@@ -140,7 +139,7 @@ $(document).ready(function(){
     $status.text(game.player.name + ' attacks and deals ' +
       (hpBeforeAttack - hpAfterAttack) +
       ' damage');
-    // Check for win
+    // Check for win situation
     if(game.win()){
       $status.text(game.player.name + " has defeated " + game.opponent.name + "!");
       return;
@@ -154,8 +153,7 @@ $(document).ready(function(){
   });
 
   function opponentTurn(){
-    // Attack 75% of the time
-    if(Math.random() < 0.75){
+    if(opponent.hp > 0){
       var hpBeforeAttack = game.player.hp;
       game.attack();
       var hpAfterAttack = game.player.hp;

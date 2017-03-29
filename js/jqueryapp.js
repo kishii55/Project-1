@@ -108,13 +108,13 @@ var game = {
 
 $(document).ready(function(){
   console.log('Loaded');
-  var $attackBtn = $('#attack_btn'),
+  var $attackBtn = $('#attackBtn'),
     $opponentImg = $('#opponent_img'),
     $opponentName = $('#opponent .name'),
     $opponenthp = $('#opponent .hp'),
-    $playerhp = $('#Guile .hp'),
-    $statusTxt = $('#status_text'),
-    $restBtn = $('#rest_btn');
+    $playerhp = $('#guile .hp'),
+    $statusTxt = $('#statusText'),
+    $restBtn = $('#restBtn');
 
     var timerId;
 

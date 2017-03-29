@@ -4,7 +4,7 @@ body{
 	zoom: 1.75;
 }
 
-#bg_image{
+#backgroundImg{
 	position: relative;
 	border: 10px solid #CCC;
 	width: 556px;
@@ -15,24 +15,24 @@ body{
 	margin-top: 5%;
 }
 
-#Guile{
+#player{
 	position: absolute;
 	height:110px;
 	width:100%;
 	margin-top:148px;
 }
-#Guile{
+#guile{
 	position: absolute;
 	width:150px;
 	left:50px;
 	margin-right: 0px;
 }
-#Guile p{
+#guile p{
 	margin-left: 285px;
 	margin-bottom:0;
 	margin-top:0;
 }
-#Guile .name{
+#guile .name{
 	margin-top:40px;
 
 }
@@ -49,7 +49,7 @@ body{
 	margin-top:0;
 }
 
-#opponent_img{
+#opponentImg{
 	position: absolute;
 	width:130px;
 	height:130px;
@@ -58,7 +58,7 @@ body{
 	transition: transform .5s;
 }
 
-#status_text{
+#statusText{
 	position: absolute;
 	height:65px;
 	width:65%;
@@ -68,7 +68,7 @@ body{
 	color:white;
 }
 
-#attack_btn{
+#attackBtn{
 	cursor: pointer;
 	color: white;
 	border:1px solid;
@@ -79,7 +79,7 @@ body{
 	top:263px;
 }
 
-#rest_btn{
+#restBtn{
 	cursor: pointer;
 	color: white;
 	border:1px solid;

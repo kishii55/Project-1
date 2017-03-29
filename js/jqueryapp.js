@@ -1,26 +1,26 @@
 //Array of available objects
 var opponent = [
-    {name: 'Ryu', img: '../images/Ryu.jpg', hp: 500},
-    {name: 'Ken', img: '../images/Ken.jpg', hp: 500},
-    {name: 'Chun-Li', img: '../images/ChunLi.jpg', hp: 500},
-    {name: 'Cammy', img: '../images/Cammy.jpg', hp: 500},
-    {name: 'Akuma', img: '../images/Akuma.jpg', hp: 500},
-    {name: 'Dhalsim', img: '../images/Dhalsim.jpg', hp: 500},
-    {name: 'M-Bison', img: '../images/Bison.jpg', hp: 500},
-    {name: 'Zangief', img: '../images/Zangief.jpg', hp: 500},
-    {name: 'Sagat', img: '../images/Sagat.jpg', hp: 500},
-    {name: 'Vega', img: '../images/Vega.jpg', hp: 500},
-    {name: 'Balrog', img: '../images/Balrog.jpg', hp: 500},
-    {name: 'Blanka', img: '../images/Blanka.jpg', hp: 500},
-    {name: 'Crimson Viper', img: '../images/CrimsonViper.jpg', hp: 500},
-    {name: 'E. Honda', img: '../images/EHonda.jpg', hp: 500},
-    {name: 'Fei Long', img: '../images/FeiLong.jpg', hp: 500}
+    {name: 'Ryu', img: 'images/Ryu.jpg', hp: 500},
+    {name: 'Ken', img: 'images/Ken.jpg', hp: 500},
+    {name: 'Chun-Li', img: 'images/ChunLi.jpg', hp: 500},
+    {name: 'Cammy', img: 'images/Cammy.jpg', hp: 500},
+    {name: 'Akuma', img: 'images/Akuma.jpg', hp: 500},
+    {name: 'Dhalsim', img: 'images/Dhalsim.jpg', hp: 500},
+    {name: 'M-Bison', img: 'images/Bison.jpg', hp: 500},
+    {name: 'Zangief', img: 'images/Zangief.jpg', hp: 500},
+    {name: 'Sagat', img: 'images/Sagat.jpg', hp: 500},
+    {name: 'Vega', img: 'images/Vega.jpg', hp: 500},
+    {name: 'Balrog', img: 'images/Balrog.jpg', hp: 500},
+    {name: 'Blanka', img: 'images/Blanka.jpg', hp: 500},
+    {name: 'Crimson Viper', img: 'images/CrimsonViper.jpg', hp: 500},
+    {name: 'E. Honda', img: 'images/EHonda.jpg', hp: 500},
+    {name: 'Fei Long', img: 'images/FeiLong.jpg', hp: 500}
 ];
 
 
 //My Choice
 
-var Guile = { name: 'Guile', img: '../images/Guile.jpg', hp: 500 };
+var Guile = { name: 'Guile', img: 'images/guile.gif', hp: 500 };
 
 //Fighter Constructor function
 
@@ -30,11 +30,11 @@ function Fighter(name, img, hp) {
   this.hp = hp;
 
 
-//isSuccessful method calculates a % chance that Attacks will hit or miss
+//isSuccessful method calculates a % chance that Attacks will hit or miss or dealing little to massive dmg (like dodging and performing critical hits)
 
   this.attack = function(opponent) {
     if(isSuccessful(0.8)){
-      opponent.receiveDamage(generateRandom(30, 50));
+      opponent.receiveDamage(generateRandom(50, 150));
       return true;
     } else {
       return false;
@@ -153,7 +153,8 @@ $(document).ready(function(){
   });
 
   function opponentTurn(){
-    if(opponent.hp > 0){
+    //The enemy will choose to attack 85% of the time and if not will choose to rest
+    if(Math.random() < 0.85){
       var hpBeforeAttack = game.player.hp;
       game.attack();
       var hpAfterAttack = game.player.hp;
@@ -197,10 +198,10 @@ $(document).ready(function(){
     (hpAfterRest - hpBeforeRest) + ' HP!');
     $playerhp.text('HP: ' + game.player.hp);
 
-    // Timout for 2 seconds while showing opponent turn
+    // Timout during opponent turn
     window.setTimeout(function(){
         $status.text(game.opponent.name + '\'s turn');
-        window.setTimeout(opponentTurn, 1000);
-    }, 1000);
+        window.setTimeout(opponentTurn, 500);
+    }, 500);
   });
 });

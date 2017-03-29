@@ -26,7 +26,8 @@ body{
 	position: absolute;
 	width:200px;
 	height:250px;
-	left: 60px;
+	left: 50px;
+	top: 60px;
 }
 
 #guile p{

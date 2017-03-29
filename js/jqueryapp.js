@@ -1,26 +1,26 @@
 var character = [
-    {name: 'Guile', img: 'images/Guile.jpg', hp: 500},
-    {name: 'Ryu', img: 'images/Ryu.jpg', hp: 500},
-    {name: 'Ken', img: 'images/Ken.jpg', hp: 500},
-    {name: 'Chun-Li', img: 'images/ChunLi.jpg', hp: 500},
-    {name: 'Cammy', img: 'images/Cammy.jpg', hp: 500},
-    {name: 'Akuma', img: 'images/Akuma.jpg', hp: 500},
-    {name: 'Dhalsim', img: 'images/Dhalsim.jpg', hp: 500},
-    {name: 'M-Bison', img: 'images/Bison.jpg', hp: 500},
-    {name: 'Zangief', img: 'images/Zangief.jpg', hp: 500},
-    {name: 'Sagat', img: 'images/Sagat.jpg', hp: 500},
-    {name: 'Vega', img: 'images/Vega.jpg', hp: 500},
-    {name: 'Balrog', img: 'images/Balrog.jpg', hp: 500},
-    {name: 'Blanka', img: 'images/Blanka.jpg', hp: 500},
-    {name: 'Crimson Viper', img: 'images/CrimsonViper.jpg', hp: 500},
-    {name: 'E. Honda', img: 'images/EHonda.jpg', hp: 500},
-    {name: 'Fei Long', img: 'images/FeiLong.jpg', hp: 500}
+    {name: 'Guile', img: '../images/Guile.jpg', hp: 500},
+    {name: 'Ryu', img: '../images/Ryu.jpg', hp: 500},
+    {name: 'Ken', img: '../images/Ken.jpg', hp: 500},
+    {name: 'Chun-Li', img: '../images/ChunLi.jpg', hp: 500},
+    {name: 'Cammy', img: '../images/Cammy.jpg', hp: 500},
+    {name: 'Akuma', img: '../images/Akuma.jpg', hp: 500},
+    {name: 'Dhalsim', img: '../images/Dhalsim.jpg', hp: 500},
+    {name: 'M-Bison', img: '../images/Bison.jpg', hp: 500},
+    {name: 'Zangief', img: '../images/Zangief.jpg', hp: 500},
+    {name: 'Sagat', img: '../images/Sagat.jpg', hp: 500},
+    {name: 'Vega', img: '../images/Vega.jpg', hp: 500},
+    {name: 'Balrog', img: '../images/Balrog.jpg', hp: 500},
+    {name: 'Blanka', img: '../images/Blanka.jpg', hp: 500},
+    {name: 'Crimson Viper', img: '../images/CrimsonViper.jpg', hp: 500},
+    {name: 'E. Honda', img: '../images/EHonda.jpg', hp: 500},
+    {name: 'Fei Long', img: '../images/FeiLong.jpg', hp: 500}
 ];
 
 
 //My Choice
 
-var Guile = { name: 'Guile', img: 'images/Guile.jpg', hp: 500 };
+var Guile = { name: 'Guile', img: '../images/Guile.jpg', hp: 500 };
 
 //Fighter Constructor function
 
@@ -107,13 +107,12 @@ var game = {
 };
 
 $(document).ready(function(){
-  console.log('Loaded');
   var $attackBtn = $('#attackBtn'),
-    $opponentImg = $('#opponent_img'),
+    $opponentImg = $('#opponentImg'),
     $opponentName = $('#opponent .name'),
     $opponenthp = $('#opponent .hp'),
     $playerhp = $('#guile .hp'),
-    $statusTxt = $('#statusText'),
+    $status = $('#status'),
     $restBtn = $('#restBtn');
 
     var timerId;
@@ -124,8 +123,8 @@ $(document).ready(function(){
   $opponentImg.attr('src', game.opponent.img);
   $opponentName.text(game.opponent.name + '!');
   $opponenthp.text('hp: ' + game.opponent.hp);
-  // Set the status to text to a wild <> appears
-  $statusTxt.text('A new challenger' + game.opponent.name + ' approaches!');
+  // Set the status to text a new challenger appears
+  $status.text('A new challenger' + game.opponent.name + ' approaches!');
   // When Attack is clicked
   $attackBtn.click(function(event){
     // Hide the butttons
@@ -139,17 +138,17 @@ $(document).ready(function(){
     $opponenthp.text('hp: ' + game.opponent.hp);
     // Update status text
     var hpAfterAttack = game.opponent.hp;
-    $statusTxt.text(game.player.name + ' attacks and deliver ' +
+    $status.text(game.player.name + ' attacks and deliver ' +
       (hpBeforeAttack - hpAfterAttack) +
       ' points of damage');
     // Check for win
     if(game.win()){
-      $statusTxt.text(game.player.name + " has defeated " + game.opponent.name + "!");
+      $status.text(game.player.name + " has defeated " + game.opponent.name + "!");
       return;
     }
     // Timout for 3 seconds while showing opponent turn
     window.setTimeout(function(){
-        $statusTxt.text(game.opponent.name + '\'s turn ...');
+        $status.text(game.opponent.name + '\'s turn ...');
         window.setTimeout(opponentTurn, 1000);
     }, 1000);
 
@@ -163,7 +162,7 @@ $(document).ready(function(){
       var hpAfterAttack = game.player.hp;
       // Update player hp and info
       $playerhp.text('hp: ' + game.player.hp);
-      $statusTxt.text(game.opponent.name + ' attacks and delivers ' +
+      $status.text(game.opponent.name + ' attacks and delivers ' +
       (hpBeforeAttack - hpAfterAttack) + ' points of damage.');
     } else {
       var hpBeforeRest = game.opponent.hp;
@@ -171,13 +170,13 @@ $(document).ready(function(){
       var hpAfterRest = game.opponent.hp;
       // Update player hp and info
       $opponenthp.text('hp: ' + game.opponent.hp);
-      $statusTxt.text(game.opponent.name + ' rests by ' +
+      $status.text(game.opponent.name + ' rests by ' +
       (hpAfterRest - hpBeforeRest) + ' points.');
     }
 
     // Check for loss
     if(game.lose()){
-      $statusTxt.text(game.player.name + " has been K.O. by " + game.opponent.name + "!");
+      $status.text(game.player.name + " has been K.O. by " + game.opponent.name + "!");
       return;
     }
 
@@ -197,13 +196,13 @@ $(document).ready(function(){
     game.rest();
     // Save hp after resting and print difference to status
     var hpAfterRest = game.player.hp;
-    $statusTxt.text(game.player.name + ' rests by ' +
+    $status.text(game.player.name + ' rests by ' +
     (hpAfterRest - hpBeforeRest) + ' points.');
     $playerhp.text('hp: ' + game.player.hp);
 
     // Timout for 2 seconds while showing opponent turn
     window.setTimeout(function(){
-        $statusTxt.text(game.opponent.name + '\'s turn ...');
+        $status.text(game.opponent.name + '\'s turn ...');
         window.setTimeout(opponentTurn, 1000);
     }, 1000);
   });

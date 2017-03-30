@@ -22,8 +22,9 @@ var opponent = [
 
 var Ken = {name: 'Ken', img: 'images/KenStandingStill.png', hp: 200};
 
+//=================================================================+
 //Fighter Constructor function
-
+//==================================================================
 function Fighter(name, img, hp) {
   this.name = name;
   this.img = img;
@@ -68,6 +69,9 @@ function Fighter(name, img, hp) {
 
 }
 
+//==================================================================
+//GAMEPLAY Constructor
+//==================================================================
 var game = {
   player: {},
   opponent: {},
@@ -107,8 +111,9 @@ var game = {
   }
 };
 
-
+//==================================================================
 // BEGIN DOCUMENT ONLOAD
+//==================================================================
 $(document).ready(function(){
   var $attackBtn = $('#attackBtn'),
     $opponentImg = $('#opponentImg'),
@@ -117,8 +122,11 @@ $(document).ready(function(){
     $playerhp = $('#ken .hp'),
     $status = $('#status'),
     $restBtn = $('#restBtn');
+    $restartBtn = $('#restartBtn');
 
-  // Start Game
+
+//==================================================================//Invoking Start Game to DOM
+//=================================================================
   game.start(opponent[Math.floor(Math.random()*opponent.length)], Ken);
   // Set name and attributes for opponent
   $opponentImg.attr('src', game.opponent.img);
@@ -126,6 +134,11 @@ $(document).ready(function(){
   $opponenthp.text('HP: ' + game.opponent.hp);
   // Display status to a new challenger appears
   $status.text('A new challenger ' + game.opponent.name + ' approaches!');
+
+  //================================================================
+  //ATTACK button
+  //================================================================
+
   // On atk click
   $attackBtn.click(function(event){
     // Hide options after selecting one to prevent multi clicking
@@ -185,7 +198,9 @@ $(document).ready(function(){
     $attackBtn.show();
     $restBtn.show();
   }
-
+//================================================================
+//REST button
+//================================================================
   // Add handler to rest button
   $restBtn.click(function(event){
     // Hide the buttons
@@ -208,8 +223,13 @@ $(document).ready(function(){
     }, 500);
   });
 
-// ===========================================================
-// ===========================================================
+
+//==================================================================
+//RESTART button
+//==================================================================
+// =================================================================
+//FINAL ATTACK Function
+// =================================================================
 
 //save objects
 var $player = $('#player'),
@@ -235,6 +255,7 @@ var $player = $('#player'),
 
   //Event: when left click show hadouken
   .mousedown(function() {
+    game.win();
     $hadouken.show();
     $kenBounce.hide();
     $kenFire.show();
@@ -242,6 +263,7 @@ var $player = $('#player'),
         $(this).hide();
         $(this).css('left', '-260px');
       });
+
   })
   .mouseup(function() {
     $kenFire.hide();

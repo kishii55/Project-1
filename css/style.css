@@ -12,16 +12,16 @@
 #player{
 	position: absolute;
 	height:240px;
-	width:190px;
-	left: 240px;
+	width:150px;
+	left: 50px;
 	top: 150px;
 }
 
-#guile {
+#ken {
 	position: absolute;
 }
 
-#guile p{
+#ken p{
 	color: white;
 	background-color: black;
 	margin-top: 0;
@@ -47,10 +47,10 @@
 
 #opponentImg{
 	position: absolute;
-	width:190px;
-	height:240px;
-	left: 380px;
-	top:200px;
+	width: 130px;
+	height: 200px;
+	left: 630px;
+	top: 150px;
 	-moz-transform: scaleX(-1);
 			-o-transform: scaleX(-1);
 			-webkit-transform: scaleX(-1);
@@ -65,10 +65,10 @@
 	background-color: black;
 	border:1px solid white;
 	position: absolute;
-	left:75%;
+	left: 40%;
 	width:20%;
 	text-align: center;
-	top:320px;
+	top:330px;
 }
 
 #restBtn{
@@ -77,10 +77,10 @@
 	background-color: black;
 	border:1px solid;
 	position: absolute;
-	left:75%;
+	left:40%;
 	width:20%;
 	text-align: center;
-	top:350px;
+	top:360px;
 }
 
 
@@ -88,9 +88,52 @@
 	position: absolute;
 	text-align: center;
 	padding: 10px;
-	top: 0%;
-	left: 35%;
+	top:0%;
+	left: 34%;
 	color:white;
 	background-color: black;
 	border: 1px solid white;
+}
+
+/*===========================================================
+HADOUKEN SUPER FINISH!!!
+===========================================================*/
+
+/*Use Display none to hide images on HTML and to access using jquery*/
+
+.kenStill, .kenBounce, .kenFire{
+	background-size:
+	display: show;
+
+}
+
+
+
+.kenFire, .hadouken {
+	float: left;
+}
+
+.hadouken {
+  background-image: url('../images/Hadouken.gif');
+	background-size: cover;
+  width: 180px;
+  height: 100px;
+  display: show;
+  position: relative;
+  top: 175px;
+  left: 50px;
+/*Use a Z-index higher than other elements so it displays over them*/
+  z-index: 100;
+}
+
+.kenStill {
+  background-image: url('../images/KenStandingStill.png');
+}
+
+.kenBounce {
+  background-image: url('../images/KenBounce.gif');
+}
+
+.kenFire {
+  background-image: url('../images/KenFire.png');
 }

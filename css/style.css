@@ -140,7 +140,7 @@ HADOUKEN SUPER FINISH!!!
   display: none;
   position: relative;
   top: 175px;
-  left: 50px;
+  left: 100px;
 /*Use a Z-index higher than other elements so it displays over them*/
   z-index: 1;
 }

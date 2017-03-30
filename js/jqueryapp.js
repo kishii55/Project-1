@@ -262,7 +262,7 @@ var $player = $('#player'),
     $hadouken.show();
     $kenBounce.hide();
     $kenFire.show();
-    $hadouken.finish().show().animate({'left': '410px'}, 500,function() {
+    $hadouken.finish().show().animate({'left': '550px'}, 500,function() {
         $(this).hide();
         $(this).css('left', '-260px');
       });

@@ -38,11 +38,10 @@ function Fighter(name, img, hp, rnd) {
 
   this.isKO = function(){
     return this.hp <= 0;
-           this.rnd += 1;
   };
 
-  this.roundWinner = function(){
-    return this.rnd ++;
+  this.totalWins = function(){
+    return this.rnd < 3;
   };
 
   // successRate
@@ -110,6 +109,9 @@ var game = {
       this.currentPlayer = this.player;
     }
   },
+  continue: function(){
+    return this.player.totalWins();
+  },
   win: function(){
     return this.opponent.isKO();
   },
@@ -170,25 +172,30 @@ $(document).ready(function(){
 
 
     // Check for win situation
-    if(game.win()){
+    if(game.win() && game.continue()){
       $playerRnd.text('Rounds Won: ' + (rndBeforeAttack + 1));
       $status.text(game.player.name + " has defeated " + game.opponent.name + "!");
-      return;
+      game.start(opponent[Math.floor(Math.random()*opponent.length)], Ken);
+
     }
     // Timout during opponent turn
     window.setTimeout(function(){
         $status.text(game.opponent.name + '\'s turn');
-        window.setTimeout(opponentTurn, 500);
-    }, 500);
+        window.setTimeout(opponentTurn, 1000);
+    }, 1000);
 
   });
 
   function opponentTurn(){
     //The enemy will choose to attack 75% of the time and if not will choose to rest
     if(Math.random() < 0.75){
+      //store player hp before opponent attacks
       var hpBeforeAttack = game.player.hp;
+      //store rounds opponent has before attacks
       var rndBeforeAttack = game.opponent.rnd;
+      //opponent attacks
       game.attack();
+      //store player hp after opponent attacks
       var hpAfterAttack = game.player.hp;
       // Update player hp and info
       $playerhp.text('HP: ' + game.player.hp);
@@ -207,7 +214,8 @@ $(document).ready(function(){
     // Check for loss
     if(game.lose()){
       $opponentRnd.text('Rounds Won: ' + (rndBeforeAttack + 1));
-      $status.text(game.player.name + " has been K.O. by " + game.opponent.name + "!");
+      $status.text(game.player.name + " has been K.O. by " + game.opponent.name + "! G.a.M.e O.v.E.r");
+      //Return Stops functions from moving on
       return;
     }
 
@@ -236,8 +244,8 @@ $(document).ready(function(){
     // Timout during opponent turn
     window.setTimeout(function(){
         $status.text(game.opponent.name + '\'s turn');
-        window.setTimeout(opponentTurn, 500);
-    }, 500);
+        window.setTimeout(opponentTurn, 1000);
+    }, 1000);
   });
 
 

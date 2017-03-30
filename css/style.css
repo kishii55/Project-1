@@ -102,8 +102,9 @@ HADOUKEN SUPER FINISH!!!
 /*Use Display none to hide images on HTML and to access using jquery*/
 
 .kenStill, .kenBounce, .kenFire{
-	background-size:
-	display: show;
+	height: 240px;
+	width:150px;
+	background-size: 100% 100%;
 
 }
 
@@ -118,16 +119,17 @@ HADOUKEN SUPER FINISH!!!
 	background-size: cover;
   width: 180px;
   height: 100px;
-  display: show;
+  display: hide;
   position: relative;
   top: 175px;
   left: 50px;
 /*Use a Z-index higher than other elements so it displays over them*/
-  z-index: 100;
+  z-index: 1;
 }
 
 .kenStill {
   background-image: url('../images/KenStandingStill.png');
+	width: ;
 }
 
 .kenBounce {

@@ -1,34 +1,35 @@
 //Array of available objects
 var opponent = [
-    {name: 'Ryu', img: 'images/Ryu.jpg', hp: 200},
-    {name: 'Guile', img: 'images/guile.jpg', hp: 200 },
-    {name: 'Chun-Li', img: 'images/ChunLi.jpg', hp: 200},
-    {name: 'Cammy', img: 'images/Cammy.jpg', hp: 200},
-    {name: 'Akuma', img: 'images/Akuma.jpg', hp: 200},
-    {name: 'Dhalsim', img: 'images/Dhalsim.jpg', hp: 200},
-    {name: 'M-Bison', img: 'images/Bison.jpg', hp: 200},
-    {name: 'Zangief', img: 'images/Zangief.jpg', hp: 200},
-    {name: 'Sagat', img: 'images/Sagat.jpg', hp: 200},
-    {name: 'Vega', img: 'images/Vega.jpg', hp: 200},
-    {name: 'Balrog', img: 'images/Balrog.jpg', hp: 200},
-    {name: 'Blanka', img: 'images/Blanka.jpg', hp: 200},
-    {name: 'Crimson Viper', img: 'images/CrimsonViper.jpg', hp: 200},
-    {name: 'E. Honda', img: 'images/EHonda.jpg', hp: 200},
-    {name: 'Fei Long', img: 'images/FeiLong.jpg', hp: 200}
+    {name: 'Ryu', img: 'images/Ryu.jpg', hp: 200, rnd: 0},
+    {name: 'Guile', img: 'images/Guile.jpg', hp: 200, rnd: 0},
+    {name: 'Chun-Li', img: 'images/ChunLi.jpg', hp: 200, rnd: 0},
+    {name: 'Cammy', img: 'images/Cammy.jpg', hp: 200, rnd: 0},
+    {name: 'Akuma', img: 'images/Akuma.jpg', hp: 200, rnd: 0},
+    {name: 'Dhalsim', img: 'images/Dhalsim.jpg', hp: 200, rnd: 0},
+    {name: 'M-Bison', img: 'images/Bison.jpg', hp: 200, rnd: 0},
+    {name: 'Zangief', img: 'images/Zangief.jpg', hp: 200, rnd: 0},
+    {name: 'Sagat', img: 'images/Sagat.jpg', hp: 200, rnd: 0},
+    {name: 'Vega', img: 'images/Vega.jpg', hp: 200, rnd: 0},
+    {name: 'Balrog', img: 'images/Balrog.jpg', hp: 200, rnd: 0},
+    {name: 'Blanka', img: 'images/Blanka.jpg', hp: 200, rnd: 0},
+    {name: 'Crimson Viper', img: 'images/CrimsonViper.jpg', hp: 200, rnd: 0},
+    {name: 'E. Honda', img: 'images/EHonda.jpg', hp: 200, rnd: 0},
+    {name: 'Fei Long', img: 'images/FeiLong.jpg', hp: 200, rnd: 0}
 ];
 
 
 //My Choice
 
-var Ken = {name: 'Ken', img: 'images/KenStandingStill.png', hp: 200};
+var Ken = {name: 'Ken', img: 'images/KenStandingStill.png', hp: 200, rnd: 0};
 
 //=================================================================+
 //Fighter Constructor function
 //==================================================================
-function Fighter(name, img, hp) {
+function Fighter(name, img, hp, rnd) {
   this.name = name;
   this.img = img;
   this.hp = hp;
+  this.rnd = rnd;
 
 
   this.rest = function(){
@@ -38,6 +39,11 @@ function Fighter(name, img, hp) {
   this.isKO = function(){
     return this.hp <= 0;
   };
+
+  this.roundWinner = function(){
+    return this.rnd ++;
+  };
+
   // successRate
   var isSuccessful = function(percent){
     return Math.random() < percent;
@@ -79,9 +85,9 @@ var game = {
   start: function(opponent, player){
     // Set the player and opponent
     this.player = new Fighter(player.name, player.img,
-       player.hp);
+       player.hp, player.rnd);
     this.opponent = new Fighter(opponent.name, opponent.img,
-    opponent.hp);
+    opponent.hp, opponent.rnd);
     // Set the currentPlayer to player
     this.currentPlayer = this.player;
   },
@@ -104,9 +110,11 @@ var game = {
     }
   },
   win: function(){
+    return this.roundWinner();
     return this.opponent.isKO();
   },
   lose: function(){
+    return this.roundWinner();
     return this.player.isKO();
   }
 };
@@ -119,7 +127,9 @@ $(document).ready(function(){
     $opponentImg = $('#opponentImg'),
     $opponentName = $('#opponent .name'),
     $opponenthp = $('#opponent .hp'),
+    $opponentRnd = $('#opponent .rnd'),
     $playerhp = $('#ken .hp'),
+    $playerRnd = $('#ken .rnd')
     $status = $('#status'),
     $restBtn = $('#restBtn');
     $restartBtn = $('#restartBtn');
@@ -130,8 +140,9 @@ $(document).ready(function(){
   game.start(opponent[Math.floor(Math.random()*opponent.length)], Ken);
   // Set name and attributes for opponent
   $opponentImg.attr('src', game.opponent.img);
-  $opponentName.text(game.opponent.name + '!');
+  $opponentName.text(game.opponent.name);
   $opponenthp.text('HP: ' + game.opponent.hp);
+  $opponentRnd.text('Rounds Won: ' + game.opponent.rnd);
   // Display status to a new challenger appears
   $status.text('A new challenger ' + game.opponent.name + ' approaches!');
 

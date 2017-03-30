@@ -1,3 +1,7 @@
+body {
+	zoom: 150%;
+}
+
 #backgroundImg{
 	position: relative;
 	border: 10px solid black;
@@ -136,14 +140,27 @@ HADOUKEN SUPER FINISH!!!
   display: none;
   position: relative;
   top: 175px;
-  left: 100px;
+  left: 150px;
 /*Use a Z-index higher than other elements so it displays over them*/
-  z-index: 1;
+  z-index: 10;
 }
 
 .kenStill, .kenBounce, .kenFire{
 	height: 240px;
 	width:150px;
+	background-repeat: no-repeat;
+	position: absolute;
 	background-size: 100% 100%;
+	top: 150px;
+	left: 40px;
+}
 
+#EmbedMusic {
+	position: absolute;
+	color: green;
+	background: gold;
+	left: 27%;
+	text-align: center;
+	margin-top: 10px;
+	padding-top: 5px;
 }

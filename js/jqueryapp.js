@@ -31,11 +31,6 @@ function Fighter(name, img, hp, rnd) {
   this.hp = hp;
   this.rnd = rnd;
 
-
-  this.rest = function(){
-    this.hp += generateRandom(50, 100);
-  };
-
   this.isKO = function(){
     return this.hp <= 0;
   };
@@ -55,9 +50,13 @@ function Fighter(name, img, hp, rnd) {
 
   //isSuccessful method calculates a % chance that Attacks will hit or miss or dealing little to massive dmg (like dodging and performing critical hits)
 
+  this.rest = function(){
+    this.hp += generateRandom(50, 70);
+  };
+
   this.attack = function(opponent) {
-    if(isSuccessful(0.8)){
-      opponent.receiveDamage(generateRandom(40, 70));
+    if(isSuccessful(0.9)){
+      opponent.receiveDamage(generateRandom(50, 80));
       return true;
     } else {
       return false;
@@ -84,8 +83,7 @@ var game = {
   currentPlayer: {},
   start: function(opponent, player){
     // Set the player and opponent
-    this.player = new Fighter(player.name, player.img,
-       player.hp, player.rnd);
+    this.player = new Fighter(player.name, player.img, player.hp, player.rnd);
     this.opponent = new Fighter(opponent.name, opponent.img,
     opponent.hp, opponent.rnd);
     // Set the currentPlayer to player
@@ -175,8 +173,7 @@ $(document).ready(function(){
     if(game.win() && game.continue()){
       $playerRnd.text('Rounds Won: ' + (rndBeforeAttack + 1));
       $status.text(game.player.name + " has defeated " + game.opponent.name + "!");
-      game.start(opponent[Math.floor(Math.random()*opponent.length)], Ken);
-
+      game.start(opponent, ken);
     }
     // Timout during opponent turn
     window.setTimeout(function(){
@@ -282,10 +279,8 @@ var $kenStill = $('.kenStill'),
     $hadouken.show();
     $kenBounce.hide();
     $kenFire.show();
-    $hadouken.finish().show().animate({'left': '550px'}, 500,function() {
-        $(this).hide();
-        $(this).css('left', '-260px');
-      });
+    $hadouken.finish().show().animate({'left': '550px'}, 500,function() {    
+  });
 
 
   })

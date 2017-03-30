@@ -38,6 +38,7 @@ function Fighter(name, img, hp, rnd) {
 
   this.isKO = function(){
     return this.hp <= 0;
+           this.rnd += 1;
   };
 
   this.roundWinner = function(){
@@ -110,11 +111,9 @@ var game = {
     }
   },
   win: function(){
-    return this.roundWinner();
     return this.opponent.isKO();
   },
   lose: function(){
-    return this.roundWinner();
     return this.player.isKO();
   }
 };
@@ -157,17 +156,22 @@ $(document).ready(function(){
     $restBtn.hide();
     // Store current hp before attack
     var hpBeforeAttack = game.opponent.hp;
+    //Store current rnd before attack
+    var rndBeforeAttack = game.player.rnd;
     // Run attack
     game.attack();
-    // Update hp info
+    // Update hp/rnd info
     $opponenthp.text('HP: ' + game.opponent.hp);
     // Update status text
     var hpAfterAttack = game.opponent.hp;
     $status.text(game.player.name + ' attacks and deals ' +
       (hpBeforeAttack - hpAfterAttack) +
       ' damage');
+
+
     // Check for win situation
     if(game.win()){
+      $playerRnd.text('Rounds Won: ' + (rndBeforeAttack + 1));
       $status.text(game.player.name + " has defeated " + game.opponent.name + "!");
       return;
     }
@@ -183,6 +187,7 @@ $(document).ready(function(){
     //The enemy will choose to attack 75% of the time and if not will choose to rest
     if(Math.random() < 0.75){
       var hpBeforeAttack = game.player.hp;
+      var rndBeforeAttack = game.opponent.rnd;
       game.attack();
       var hpAfterAttack = game.player.hp;
       // Update player hp and info
@@ -201,6 +206,7 @@ $(document).ready(function(){
 
     // Check for loss
     if(game.lose()){
+      $opponentRnd.text('Rounds Won: ' + (rndBeforeAttack + 1));
       $status.text(game.player.name + " has been K.O. by " + game.opponent.name + "!");
       return;
     }
@@ -265,7 +271,6 @@ var $kenStill = $('.kenStill'),
 
   //Event: when left click show hadouken
   .mousedown(function() {
-    game.win();
     $hadouken.show();
     $kenBounce.hide();
     $kenFire.show();

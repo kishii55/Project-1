@@ -266,6 +266,7 @@ var $player = $('#player'),
         $(this).hide();
         $(this).css('left', '-260px');
       });
+      
 
   })
   .mouseup(function() {

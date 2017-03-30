@@ -221,12 +221,16 @@ var $player = $('#player'),
   //Event when mouse over super finish changes image
   $player.mouseover(function() {
     $kenStill.hide();
+    $player.fadeTo(0, 0);
     $kenBounce.show();
+    $kenFire.hide();
   })
 
   $player.mouseleave(function() {
     $kenBounce.hide();
+    $player.fadeTo(0, 1);
     $kenStill.show();
+    $kenFire.hide();
   })
 
   //Event: when left click show hadouken
@@ -240,8 +244,9 @@ var $player = $('#player'),
       });
   })
   .mouseup(function() {
-    $kenBounce.hide();
-    $kenStill.show();
+    $kenFire.hide();
+    $kenBounce.show();
+    $player.fadeTo(0, 0);
     $hadouken.hide();
   });
 

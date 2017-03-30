@@ -101,16 +101,18 @@ HADOUKEN SUPER FINISH!!!
 
 /*Use Display none to hide images on HTML and to access using jquery*/
 
-.kenStill, .kenBounce, .kenFire{
-	height: 240px;
-	width:150px;
-	background-size: 100% 100%;
+.kenBounce {
+  background-image: url('../images/KenBounce.gif');
+	display: none;
+}
 
+.kenFire {
+	background-image: url('../images/KenFire.png');
+	display: none;
 }
 
 
-
-.kenFire, .hadouken {
+.hadouken {
 	float: left;
 }
 
@@ -119,7 +121,7 @@ HADOUKEN SUPER FINISH!!!
 	background-size: cover;
   width: 180px;
   height: 100px;
-  display: hide;
+  display: none;
   position: relative;
   top: 175px;
   left: 50px;
@@ -127,15 +129,9 @@ HADOUKEN SUPER FINISH!!!
   z-index: 1;
 }
 
-.kenStill {
-  background-image: url('../images/KenStandingStill.png');
-	width: ;
-}
+.kenStill, .kenBounce, .kenFire{
+	height: 240px;
+	width:150px;
+	background-size: 100% 100%;
 
-.kenBounce {
-  background-image: url('../images/KenBounce.gif');
-}
-
-.kenFire {
-  background-image: url('../images/KenFire.png');
 }

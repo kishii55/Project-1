@@ -235,23 +235,19 @@ $(document).ready(function(){
 //==================================================================
 
 //save objects
-var $player = $('#player'),
-    $kenStill = $('.kenStill'),
+var $kenStill = $('.kenStill'),
     $kenBounce = $('.kenBounce'),
     $kenFire = $('.kenFire'),
     $hadouken = $('.hadouken');
 
   //Event when mouse over super finish changes image
-  $player.mouseover(function() {
+  $kenStill.mouseover(function() {
     $kenStill.hide();
-    $player.fadeTo(0, 0);
     $kenBounce.show();
-    $kenFire.hide();
   })
 
-  $player.mouseleave(function() {
+  $kenStill.mouseleave(function() {
     $kenBounce.hide();
-    $player.fadeTo(0, 1);
     $kenStill.show();
     $kenFire.hide();
   })
@@ -266,13 +262,12 @@ var $player = $('#player'),
         $(this).hide();
         $(this).css('left', '-260px');
       });
-      
+
 
   })
   .mouseup(function() {
     $kenFire.hide();
     $kenBounce.show();
-    $player.fadeTo(0, 0);
     $hadouken.hide();
   });
 

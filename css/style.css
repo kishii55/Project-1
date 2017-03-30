@@ -9,14 +9,6 @@
 	margin-top: 10%
 }
 
-#player{
-	position: absolute;
-	height:240px;
-	width:150px;
-	left: 50px;
-	top: 150px;
-}
-
 #ken {
 	position: absolute;
 }
@@ -116,6 +108,10 @@ HADOUKEN SUPER FINISH!!!
 ===========================================================*/
 
 /*Use Display none to hide images on HTML and to access using jquery*/
+
+.kenStill{
+	background-image: url('../images/KenStandingStill.png');
+}
 
 .kenBounce {
   background-image: url('../images/KenBounce.gif');

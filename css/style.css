@@ -82,6 +82,22 @@
 	text-align: center;
 	top:360px;
 }
+#restartBtn{
+	cursor: pointer;
+	color: white;
+	background-color: black;
+	border:1px solid;
+	position: absolute;
+	left:40%;
+	width:20%;
+	text-align: center;
+	top:300px;
+}
+
+#attackBtn:hover, #restBtn:hover, #restartBtn:hover{
+	background-color: red;
+}
+
 
 
 #status{

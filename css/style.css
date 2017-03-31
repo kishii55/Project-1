@@ -1,5 +1,25 @@
+nav{
+	background-color: teal;
+	color: white;
+	width: 100%;
+	text-align: center;
+	font-family: 'Permanent Marker', cursive;
+	border: 1px solid white;
+}
+
+#howtoplay, ul{
+	text-align: left;
+
+}
+ul{
+	text-align: left;
+}
+
+
+
 body {
 	zoom: 150%;
+	background-color: red;
 }
 
 #backgroundImg{
@@ -10,7 +30,7 @@ body {
 	background: url(../images/Background.gif);
 	background-size: 100% 100%;
 	margin: 0 auto;
-	margin-top: 10%
+	margin-top: 3%
 }
 
 #ken {
@@ -158,17 +178,16 @@ HADOUKEN SUPER FINISH!!!
 
 /*Calling this to refix img since its not the same size as other 2*/
 .kenStill {
-	height: 200px;
-	width: 100px;
-	top: 20px;
-	left: 20px;
-	display: none;
+	height: 210px;
+	width: 110px;
+	top: 165px;
+	left: 55px;
 }
 
 
 #EmbedMusic {
-	/*display: none;
-}*/
+	display: none;
+}
 
 #kenSound {
 	display: none;

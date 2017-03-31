@@ -33,7 +33,7 @@ function Fighter(name, img, hp, rnd) {
 
 
   this.rest = function(){
-    this.hp += generateRandom(50, 100);
+    this.hp += generateRandom(50, 80);
   };
 
   this.isKO = function(){
@@ -57,7 +57,7 @@ function Fighter(name, img, hp, rnd) {
 
   this.attack = function(opponent) {
     if(isSuccessful(0.8)){
-      opponent.receiveDamage(generateRandom(40, 70));
+      opponent.receiveDamage(generateRandom(50, 100));
       return true;
     } else {
       return false;
@@ -198,8 +198,8 @@ $(document).ready(function(){
     // Timout during opponent turn
     window.setTimeout(function(){
         $status.text(game.opponent.name + '\'s turn');
-        window.setTimeout(opponentTurn, 10);
-    }, 10);
+        window.setTimeout(opponentTurn, 500);
+    }, 500);
 
   });
 
@@ -261,8 +261,8 @@ $(document).ready(function(){
     // Timout during opponent turn
     window.setTimeout(function(){
         $status.text(game.opponent.name + '\'s turn');
-        window.setTimeout(opponentTurn, 10);
-    }, 10);
+        window.setTimeout(opponentTurn, 500);
+    }, 500);
   });
 
 
@@ -296,7 +296,7 @@ var $kenStill = $('.kenStill'),
   $kenStill.mouseover(function() {
 
   // This is suppose to be hide but its not hiding so i left it as show to work smoothly
-    $kenStill.show();
+    $kenStill.hide();
     $kenBounce.show();
   })
 

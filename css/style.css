@@ -156,11 +156,9 @@ HADOUKEN SUPER FINISH!!!
 }
 
 #EmbedMusic {
-	position: absolute;
-	color: green;
-	background: gold;
-	left: 27%;
-	text-align: center;
-	margin-top: 10px;
-	padding-top: 5px;
+	display: none;
+}
+
+#kenSound {
+	display: none;
 }

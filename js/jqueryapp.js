@@ -31,6 +31,11 @@ function Fighter(name, img, hp, rnd) {
   this.hp = hp;
   this.rnd = rnd;
 
+
+  this.rest = function(){
+    this.hp += generateRandom(50, 100);
+  };
+
   this.isKO = function(){
     return this.hp <= 0;
   };
@@ -50,13 +55,9 @@ function Fighter(name, img, hp, rnd) {
 
   //isSuccessful method calculates a % chance that Attacks will hit or miss or dealing little to massive dmg (like dodging and performing critical hits)
 
-  this.rest = function(){
-    this.hp += generateRandom(50, 70);
-  };
-
   this.attack = function(opponent) {
-    if(isSuccessful(0.9)){
-      opponent.receiveDamage(generateRandom(50, 80));
+    if(isSuccessful(0.8)){
+      opponent.receiveDamage(generateRandom(40, 70));
       return true;
     } else {
       return false;
@@ -83,7 +84,8 @@ var game = {
   currentPlayer: {},
   start: function(opponent, player){
     // Set the player and opponent
-    this.player = new Fighter(player.name, player.img, player.hp, player.rnd);
+    this.player = new Fighter(player.name, player.img,
+       player.hp, player.rnd);
     this.opponent = new Fighter(opponent.name, opponent.img,
     opponent.hp, opponent.rnd);
     // Set the currentPlayer to player
@@ -168,10 +170,13 @@ $(document).ready(function(){
       (hpBeforeAttack - hpAfterAttack) +
       ' damage');
 
+
     // Check for win situation
     if(game.win() && game.continue()){
       $playerRnd.text('Rounds Won: ' + (rndBeforeAttack + 1));
       $status.text(game.player.name + " has defeated " + game.opponent.name + "!");
+      game.start(opponent[Math.floor(Math.random()*opponent.length)], Ken);
+
     }
     // Timout during opponent turn
     window.setTimeout(function(){
@@ -254,6 +259,15 @@ $(document).ready(function(){
 //FINAL ATTACK Function
 //==================================================================
 
+
+//SOUND
+
+function kenSound() {
+  $('#kenSound')[0].volume = 1;
+  $('#kenSound')[0].load();
+  $('#kenSound')[0].play();
+}
+
 //save objects
 var $kenStill = $('.kenStill'),
     $kenBounce = $('.kenBounce'),
@@ -261,24 +275,28 @@ var $kenStill = $('.kenStill'),
     $hadouken = $('.hadouken');
 
   //Event when mouse over super finish changes image
+
   $kenStill.mouseover(function() {
     $kenStill.hide();
     $kenBounce.show();
   })
 
-  $kenStill.mouseleave(function() {
+  .mouseleave(function() {
     $kenBounce.hide();
     $kenStill.show();
-    $kenFire.hide();
   })
 
   //Event: when left click show hadouken
   .mousedown(function() {
+    kenSound();
     $hadouken.show();
+    $kenStill.hide();
     $kenBounce.hide();
     $kenFire.show();
     $hadouken.finish().show().animate({'left': '550px'}, 500,function() {
-  });
+        $(this).hide();
+        $(this).css('left', '50px');
+      });
 
 
   })
@@ -286,6 +304,7 @@ var $kenStill = $('.kenStill'),
     $kenFire.hide();
     $kenBounce.show();
     $hadouken.hide();
+    $kenStill.hide();
   });
 
 

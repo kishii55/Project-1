@@ -65,12 +65,10 @@ function Fighter(name, img, hp, rnd) {
   };
 
   this.receiveDamage = function(damage){
-    if(isSuccessful(0.8)){
+
       this.hp -= damage;
       return true;
-    } else {
-      return false;
-    }
+
   };
 
 }
@@ -120,6 +118,25 @@ var game = {
   }
 };
 
+function loadStartDOM(game) {
+  var $attackBtn = $('#attackBtn'),
+    $opponentImg = $('#opponentImg'),
+    $opponentName = $('#opponent .name'),
+    $opponenthp = $('#opponent .hp'),
+    $opponentRnd = $('#opponent .rnd'),
+    $playerhp = $('#ken .hp'),
+    $playerRnd = $('#ken .rnd')
+    $status = $('#status'),
+    $restBtn = $('#restBtn');
+    $restartBtn = $('#restartBtn');
+
+  $opponentImg.attr('src', game.opponent.img);
+  $opponentName.text(game.opponent.name);
+  $opponenthp.text('HP: ' + game.opponent.hp);
+  $opponentRnd.text('Rounds Won: ' + game.opponent.rnd);
+  // Display status to a new challenger appears
+  $status.text('A new challenger ' + game.opponent.name + ' approaches!');
+}
 //==================================================================
 // BEGIN DOCUMENT ONLOAD
 //==================================================================
@@ -135,17 +152,12 @@ $(document).ready(function(){
     $restBtn = $('#restBtn');
     $restartBtn = $('#restartBtn');
 
-
 //==================================================================//Invoking Start Game to DOM
 //=================================================================
   game.start(opponent[Math.floor(Math.random()*opponent.length)], Ken);
+  loadStartDOM(game)
   // Set name and attributes for opponent
-  $opponentImg.attr('src', game.opponent.img);
-  $opponentName.text(game.opponent.name);
-  $opponenthp.text('HP: ' + game.opponent.hp);
-  $opponentRnd.text('Rounds Won: ' + game.opponent.rnd);
-  // Display status to a new challenger appears
-  $status.text('A new challenger ' + game.opponent.name + ' approaches!');
+
 
   //================================================================
   //ATTACK button
@@ -173,9 +185,14 @@ $(document).ready(function(){
 
     // Check for win situation
     if(game.win() && game.continue()){
-      $playerRnd.text('Rounds Won: ' + (rndBeforeAttack + 1));
+      Ken.rnd = Ken.rnd + 1;
+      $playerRnd.text('Rounds Won: ' + (Ken.rnd));
       $status.text(game.player.name + " has defeated " + game.opponent.name + "!");
-      game.start(opponent[Math.floor(Math.random()*opponent.length)], Ken);
+      var findOpponent = opponent[Math.floor(Math.random()*opponent.length)]
+
+      game.start(findOpponent, Ken);
+      loadStartDOM(game);
+
 
     }
     // Timout during opponent turn

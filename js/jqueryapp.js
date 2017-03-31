@@ -1,20 +1,20 @@
 //Array of available objects
 var opponent = [
-    {name: 'Ryu', img: 'images/Ryu.jpg', hp: 200, rnd: 0},
-    {name: 'Guile', img: 'images/Guile.jpg', hp: 200, rnd: 0},
-    {name: 'Chun-Li', img: 'images/ChunLi.jpg', hp: 200, rnd: 0},
-    {name: 'Cammy', img: 'images/Cammy.jpg', hp: 200, rnd: 0},
+    {name: 'Ryu', img: 'images/Ryu.gif', hp: 200, rnd: 0},
+    {name: 'Guile', img: 'images/Guile.gif', hp: 200, rnd: 0},
+    {name: 'Chun-Li', img: 'images/ChunLi.gif', hp: 200, rnd: 0},
+    {name: 'Cammy', img: 'images/Cammy.gif', hp: 200, rnd: 0},
     {name: 'Akuma', img: 'images/Akuma.jpg', hp: 200, rnd: 0},
-    {name: 'Dhalsim', img: 'images/Dhalsim.jpg', hp: 200, rnd: 0},
+    {name: 'Dhalsim', img: 'images/Dhalsim.gif', hp: 200, rnd: 0},
     {name: 'M-Bison', img: 'images/Bison.jpg', hp: 200, rnd: 0},
     {name: 'Zangief', img: 'images/Zangief.jpg', hp: 200, rnd: 0},
     {name: 'Sagat', img: 'images/Sagat.jpg', hp: 200, rnd: 0},
-    {name: 'Vega', img: 'images/Vega.jpg', hp: 200, rnd: 0},
-    {name: 'Balrog', img: 'images/Balrog.jpg', hp: 200, rnd: 0},
+    {name: 'Vega', img: 'images/Vega.gif', hp: 200, rnd: 0},
+    {name: 'Balrog', img: 'images/Balrog.gif', hp: 200, rnd: 0},
     {name: 'Blanka', img: 'images/Blanka.jpg', hp: 200, rnd: 0},
     {name: 'Crimson Viper', img: 'images/CrimsonViper.jpg', hp: 200, rnd: 0},
-    {name: 'E. Honda', img: 'images/EHonda.jpg', hp: 200, rnd: 0},
-    {name: 'Fei Long', img: 'images/FeiLong.jpg', hp: 200, rnd: 0}
+    {name: 'E. Honda', img: 'images/EHonda.gif', hp: 200, rnd: 0},
+    {name: 'Fei Long', img: 'images/FeiLong.gif', hp: 200, rnd: 0}
 ];
 
 

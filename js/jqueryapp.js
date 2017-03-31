@@ -168,12 +168,10 @@ $(document).ready(function(){
       (hpBeforeAttack - hpAfterAttack) +
       ' damage');
 
-
     // Check for win situation
     if(game.win() && game.continue()){
       $playerRnd.text('Rounds Won: ' + (rndBeforeAttack + 1));
       $status.text(game.player.name + " has defeated " + game.opponent.name + "!");
-      game.start(opponent, ken);
     }
     // Timout during opponent turn
     window.setTimeout(function(){
@@ -279,7 +277,7 @@ var $kenStill = $('.kenStill'),
     $hadouken.show();
     $kenBounce.hide();
     $kenFire.show();
-    $hadouken.finish().show().animate({'left': '550px'}, 500,function() {    
+    $hadouken.finish().show().animate({'left': '550px'}, 500,function() {
   });
 
 

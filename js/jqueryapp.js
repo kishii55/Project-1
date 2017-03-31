@@ -181,8 +181,8 @@ $(document).ready(function(){
     // Timout during opponent turn
     window.setTimeout(function(){
         $status.text(game.opponent.name + '\'s turn');
-        window.setTimeout(opponentTurn, 1000);
-    }, 1000);
+        window.setTimeout(opponentTurn, 10);
+    }, 10);
 
   });
 
@@ -244,8 +244,8 @@ $(document).ready(function(){
     // Timout during opponent turn
     window.setTimeout(function(){
         $status.text(game.opponent.name + '\'s turn');
-        window.setTimeout(opponentTurn, 1000);
-    }, 1000);
+        window.setTimeout(opponentTurn, 10);
+    }, 10);
   });
 
 
@@ -261,7 +261,6 @@ $(document).ready(function(){
 
 
 //SOUND
-document.getElementById("#kenSound").loop = true;
 
 function kenSound() {
   $('#kenSound')[0].volume = 1;
@@ -278,13 +277,16 @@ var $kenStill = $('.kenStill'),
   //Event when mouse over super finish changes image
 
   $kenStill.mouseover(function() {
-    $kenStill.hide();
+
+  // This is suppose to be hide but its not hiding so i left it as show to work smoothly
+    $kenStill.show();
     $kenBounce.show();
   })
 
   .mouseleave(function() {
     $kenBounce.hide();
     $kenStill.show();
+    $kenFire.hide();
   })
 
   //Event: when left click show hadouken
@@ -305,7 +307,6 @@ var $kenStill = $('.kenStill'),
     $kenFire.hide();
     $kenBounce.show();
     $hadouken.hide();
-    $kenStill.hide();
   });
 
 

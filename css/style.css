@@ -153,7 +153,16 @@ HADOUKEN SUPER FINISH!!!
 	background-size: 100% 100%;
 	top: 150px;
 	left: 40px;
+	z-index: 1;
 }
+
+/*Calling this to refix img since its not the same size as other 2*/
+.kenStill {
+	height: 200px;
+	width: 100px;
+	top: 20px;
+}
+
 
 #EmbedMusic {
 	display: none;

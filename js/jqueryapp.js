@@ -261,6 +261,7 @@ $(document).ready(function(){
 
 
 //SOUND
+document.getElementById("#kenSound").loop = true;
 
 function kenSound() {
   $('#kenSound')[0].volume = 1;
